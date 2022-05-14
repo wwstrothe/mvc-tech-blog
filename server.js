@@ -1,7 +1,3 @@
-// Server for MVC Tech Blog
-
-// Dependencies
-// path module
 const path = require("path");
 // dotenv file for sensitive configuration information
 require("dotenv").config();
@@ -26,7 +22,7 @@ app.use(routes);
 
 // Turn on connection to db and then to the server
 // force: true to reset the database and clear all values, updating any new relationships
-// force: false to maintain data - aka normal operation
+// force: false to maintain data
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log("Now listening"));
 });
