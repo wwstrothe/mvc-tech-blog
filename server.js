@@ -10,7 +10,7 @@ const helpers = require("./utils/helpers");
 const hbs = exphbs.create({ helpers });
 
 const sess = {
-  secret: "Super secret secret",
+  secret: "Bitches ain't shit but hoes and tricks",
   cookie: {},
   resave: false,
   saveUninitialized: true,
