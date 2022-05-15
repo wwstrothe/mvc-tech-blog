@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { User, Post, Comment } = require("../../models");
 const session = require("express-session");
+const withAuth = require("../../utils/auth");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 // GET all Users
@@ -97,7 +98,7 @@ router.post("/login", (req, res) => {
 });
 
 // POST user logout
-router.post("/logout", (req, res) => {
+router.post("/logout", withAuth, (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
@@ -108,7 +109,7 @@ router.post("/logout", (req, res) => {
 });
 
 // PUT update user info
-router.put("/:id", (req, res) => {
+router.put("/:id", withAuth, (req, res) => {
   User.update(req.body, {
     individualHooks: true,
     where: {
@@ -129,7 +130,7 @@ router.put("/:id", (req, res) => {
 });
 
 // DELETE user
-router.delete("/:id", (req, res) => {
+router.delete("/:id", withAuth, (req, res) => {
   User.destroy({
     where: {
       id: req.params.id,
